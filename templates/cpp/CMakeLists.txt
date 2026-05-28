@@ -46,7 +46,7 @@ if(BUILD_TESTS)
 
     target_link_libraries(${PROJECT_NAME}_tests
         PRIVATE
-            ${LIB_NAME}
+            ${PROJECT_NAME}
             GTest::gtest
             GTest::gtest_main
     )
