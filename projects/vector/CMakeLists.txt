@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(sandbox-list VERSION 0.2.0 LANGUAGES CXX)
+project(sandbox-vector VERSION 0.1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -12,8 +12,10 @@ set(CLANG_FORMAT_FILE ${CMAKE_CURRENT_SOURCE_DIR}/.clang-format)
 add_library(${PROJECT_NAME} INTERFACE)
 
 target_sources(${PROJECT_NAME} INTERFACE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/list/node.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/list/list.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/vector/v1/vector.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/vector/v1/allocator.hpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/vector/v2/vector.hpp
 )
 
 target_include_directories(${PROJECT_NAME} INTERFACE
@@ -34,7 +36,8 @@ if(BUILD_TESTS)
 
     add_executable(${PROJECT_NAME}_tests         
         ${CLANG_FORMAT_FILE}
-        ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_list.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_vector.v1.cpp 
+	${CMAKE_CURRENT_SOURCE_DIR}/tests/test_vector.v2.cpp 
     )
 
     target_link_libraries(${PROJECT_NAME}_tests

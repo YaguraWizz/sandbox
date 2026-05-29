@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(sandbox-list VERSION 0.2.0 LANGUAGES CXX)
+project(sandbox-combinatorics VERSION 0.2.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -12,8 +12,11 @@ set(CLANG_FORMAT_FILE ${CMAKE_CURRENT_SOURCE_DIR}/.clang-format)
 add_library(${PROJECT_NAME} INTERFACE)
 
 target_sources(${PROJECT_NAME} INTERFACE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/list/node.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/list/list.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/combinatorics/Arrangements.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/combinatorics/Combinations.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/combinatorics/Index.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/combinatorics/Permutations.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/combinatorics/UnsignedInteger.h
 )
 
 target_include_directories(${PROJECT_NAME} INTERFACE
@@ -34,7 +37,8 @@ if(BUILD_TESTS)
 
     add_executable(${PROJECT_NAME}_tests         
         ${CLANG_FORMAT_FILE}
-        ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_list.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/benchmark.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_combinatorics.cpp
     )
 
     target_link_libraries(${PROJECT_NAME}_tests
